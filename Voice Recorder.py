@@ -13,29 +13,26 @@ root.resizable(False, False)
 root.title("e-Nunce8")
 root.configure(background='#154c79')
 
-# def RecButton():
-#     while Record.temp>0:
-#         record(foreground=('red'))
-#     else:
-#         record(foreground=('white'))
+
 
 def Record():
     freq=44100
-    duration=int(duration.get())
-    recording=sound.rec(duration*freq,samplerate=freq,channels=2)
-
+    durn=int(duration.get())
+    recording=sound.rec(durn*freq,
+                        samplerate=freq,channels=2)
+    #timer
     try:
-        temp=int(duration.get())
+        timer=int(duration.get())
     except:
         print('Please enter a correct value')
-    while temp>0:
+    while timer>0:
         root.update()
         time.sleep(1)
-        temp-= 1
-
-        if (temp==0):
-            messagebox.showinfo("time Countdown", "Recording Saved")
-        Label(text=f"{str(temp)}",font='Calibri 40', width=4,background='#154c79').place(x=240, y=590)
+        timer-= 1
+       
+        if (timer==0):
+            messagebox.showinfo("Countdown", "Recording Saved")
+        Label(text=f"{str(timer)}",font='Calibri 24', width=4,background='#154c79', fg='white').place(x=420, y=368)
 
     sound.wait()
     write('enunce8.wav',freq,recording)
@@ -59,7 +56,7 @@ Label(text='Enter time in seconds', font='Calibri 14', background='#154c79', for
 
 
 #Record Button
-record=Button(root, font='Calibri, 20', text='Record', background='#111111', foreground='white', border=0, command=Record).pack(pady=30)
+record=Button(root, font='Calibri, 20', text='Record', background='#111111', foreground='white', activebackground="red", border=0, command=Record).pack(pady=30)
 
 
 
